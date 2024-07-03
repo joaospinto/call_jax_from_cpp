@@ -27,7 +27,18 @@ cc_binary(
         "@xla//xla/tools:xla_compile_lib",
     ],
     data = [
-        "//serialized_executables:serialized_executables",
+        "//serialized_executable_protos:serialized_executable_protos",
+    ],
+)
+
+cc_binary(
+    name = "aot_example_c_api",
+    srcs = ["main_aot_c_api.cpp"],
+    deps = [
+        "@xla//xla/pjrt/c:pjrt_c_api_cpu",
+    ],
+    data = [
+        "//serialized_executable_protos:serialized_executable_protos",
     ],
 )
 
@@ -38,6 +49,19 @@ cc_binary(
         "@xla//xla/pjrt:pjrt_client",
         "@xla//xla/pjrt:tfrt_cpu_pjrt_client",
         "@xla//xla/tools:xla_compile_lib",
+    ],
+    data = [
+        "//hlo:hlo",
+    ],
+)
+
+cc_binary(
+    name = "serialize_hlo_c_api",
+    srcs = ["main_hlo_to_serialized_c_api.cpp"],
+    deps = [
+        "@xla//xla/pjrt/c:pjrt_c_api_cpu",
+        "@xla//xla/pjrt:pjrt_client",
+        "@xla//xla/service:hlo_proto_cc",
     ],
     data = [
         "//hlo:hlo",

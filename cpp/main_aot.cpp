@@ -1,7 +1,5 @@
 // Useful references:
 // 1. https://github.com/google/jax/discussions/22184
-// 2. https://jax.readthedocs.io/en/latest/aot.html
-// 3. https://jax.readthedocs.io/en/latest/export/index.html
 
 #include <fstream>
 #include <iostream>
@@ -12,7 +10,7 @@
 
 int main(int argc, char** argv) {
     // Read the serialized executable bytearray.
-    const std::string inputFile = "serialized_executables_proto/example1.pbbin";
+    const std::string inputFile = "serialized_executable_protos/example1.pbbin";
     std::ifstream infile(inputFile, std::ios_base::binary);
     std::vector<char> bytes( (std::istreambuf_iterator<char>(infile)),
                               std::istreambuf_iterator<char>() );

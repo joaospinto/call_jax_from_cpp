@@ -15,6 +15,7 @@ def main():
     exported = export.export(jit_f)(dummy)
     serialized = exported.serialize()
 
+    # TODO(joao): this does not appear to be useful; the C/C++ APIs seem to required a serialized ExecutableAndOptionsProto.
     with open("serialized_executables/example1.bytes", "wb") as bf:
         bf.write(serialized)
 
@@ -22,6 +23,13 @@ def main():
 
     with open("hlo/example1.txt", "w") as hlo_f:
         hlo_f.write(hlo)
+
+    # TODO(joao): this is required by the C API, but jax.xla_computation is deprecated.
+    # Track question: https://github.com/google/jax/discussions/22266
+    serialized_proto = jax.xla_computation(f)(dummy).as_serialized_hlo_module_proto()
+
+    with open("hlo/example1.binpb", "wb") as bf:
+        bf.write(serialized_proto)
 
 if __name__ == "__main__":
     main()
