@@ -12,23 +12,16 @@
 
 int main(int argc, char** argv) {
     // Read the serialized executable bytearray.
-    const std::string inputFile = "serialized_executables/example1.bytes";
+    const std::string inputFile = "serialized_executables_proto/example1.pbbin";
     std::ifstream infile(inputFile, std::ios_base::binary);
     std::vector<char> bytes( (std::istreambuf_iterator<char>(infile)),
                               std::istreambuf_iterator<char>() );
     std::string_view serialized_view(bytes.data(), bytes.size());
 
-    // for(const char x : bytes) {
-    //   std::cout << x;
-    // }
-    // std::cout << std::endl;
-
     // Get a CPU client.
     std::unique_ptr<xla::PjRtClient> client = xla::GetTfrtCpuClient(true).value();
 
-    xla::CompileOptions compile_options;
-
-    std::unique_ptr<xla::PjRtLoadedExecutable> executable = client->DeserializeExecutable(serialized_view, compile_options).value();
+    std::unique_ptr<xla::PjRtLoadedExecutable> executable = client->DeserializeExecutable(serialized_view, std::nullopt).value();
 
     // Input.
     xla::Literal literal_x;

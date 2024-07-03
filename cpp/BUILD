@@ -30,3 +30,16 @@ cc_binary(
         "//serialized_executables:serialized_executables",
     ],
 )
+
+cc_binary(
+    name = "serialize_hlo",
+    srcs = ["main_hlo_to_serialized.cpp"],
+    deps = [
+        "@xla//xla/pjrt:pjrt_client",
+        "@xla//xla/pjrt:tfrt_cpu_pjrt_client",
+        "@xla//xla/tools:xla_compile_lib",
+    ],
+    data = [
+        "//hlo:hlo",
+    ],
+)
