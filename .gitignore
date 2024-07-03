@@ -1,0 +1,4 @@
+bazel-*
+compile_commands.json
+MODULE.bazel
+MODULE.bazel.lock
