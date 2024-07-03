@@ -1,0 +1,14 @@
+HloModule jit_f, is_scheduled=true, entry_computation_layout={(f32[])->f32[]}, allow_spmd_sharding_propagation_to_parameters={true}, allow_spmd_sharding_propagation_to_output={true}
+
+%fused_computation (param_0.2: f32[]) -> f32[] {
+  %param_0.2 = f32[] parameter(0)
+  %multiply.2 = f32[] multiply(f32[] %param_0.2, f32[] %param_0.2), metadata={op_name="jit(f)/jit(main)/mul" source_file="/Users/joapinto/github/call_jax_from_cpp/call_jax_from_cpp/simple_jax_example.py" source_line=8}
+  %constant.1 = f32[] constant(0.01)
+  ROOT %multiply.1 = f32[] multiply(f32[] %multiply.2, f32[] %constant.1), metadata={op_name="jit(f)/jit(main)/div" source_file="/Users/joapinto/github/call_jax_from_cpp/call_jax_from_cpp/simple_jax_example.py" source_line=8}
+}
+
+ENTRY %main.5 (Arg_0.1: f32[]) -> f32[] {
+  %Arg_0.1 = f32[] parameter(0), metadata={op_name="x"}
+  ROOT %fusion = f32[] fusion(f32[] %Arg_0.1), kind=kLoop, calls=%fused_computation, metadata={op_name="jit(f)/jit(main)/div" source_file="/Users/joapinto/github/call_jax_from_cpp/call_jax_from_cpp/simple_jax_example.py" source_line=8}
+}
+

@@ -15,11 +15,18 @@ cc_binary(
     ],
 )
 
-
 cc_binary(
     name = "aot_example",
     srcs = ["main_aot.cpp"],
     deps = [
-        "@xla//xla/pjrt/c:pjrt_c_api_hdrs",
+        "@xla//xla:literal",
+        "@xla//xla:literal_util",
+        "@xla//xla:shape_util",
+        "@xla//xla/pjrt:pjrt_client",
+        "@xla//xla/pjrt:tfrt_cpu_pjrt_client",
+        "@xla//xla/tools:xla_compile_lib",
+    ],
+    data = [
+        "//serialized_executables:serialized_executables",
     ],
 )

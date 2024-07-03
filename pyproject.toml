@@ -3,6 +3,8 @@ name = "call_compiled_jax_from_cpp"
 version = "0.1"
 requires-python = ">= 3.12"
 dependencies = [
+  "absl-py",
+  "flatbuffers",
   "jax[cpu]; platform_system != \"Linux\"",
   "jax[cuda12]; platform_system == \"Linux\"",
 ]
@@ -10,7 +12,7 @@ authors = [
   {name = "Joao Sousa-Pinto", email = "joaospinto@gmail.com"},
 ]
 description = "Shows how to call compiled JAX code from C++."
-license = "Apache-2.0"
+license = {file = "LICENSE"}
 
 [tool.black]
 line-length = 80
@@ -21,3 +23,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.metadata]
 allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["call_jax_from_cpp"]

@@ -1,0 +1,7 @@
+HloModule xla_computation_target_fn, entry_computation_layout={(f32[1]{0})->(f32[1]{0})}
+
+ENTRY main.4 {
+  Arg_0.1 = f32[1]{0} parameter(0)
+  multiply.2 = f32[1]{0} multiply(Arg_0.1, Arg_0.1)
+  ROOT tuple.3 = (f32[1]{0}) tuple(multiply.2)
+}

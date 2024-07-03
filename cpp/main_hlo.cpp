@@ -1,6 +1,5 @@
 // Useful references:
 // 1. https://github.com/openxla/xla/issues/7038
-// 2. https://jax.readthedocs.io/en/latest/_autosummary/jax.xla_computation.html#jax.xla_computation
 
 #include <iostream>
 #include "xla/literal_util.h"
