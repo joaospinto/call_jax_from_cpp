@@ -102,8 +102,8 @@ int main(int argc, char** argv) {
 
     std::cout << "CKPT 9" << std::endl;
 
-    // Run `find -L . -name example1.bytes` to the file (Bazel things).
-    std::ofstream ofs("example1.bytes", std::ios_base::out | std::ios_base::binary);
+    // Run `find -L . -name example1.binpb` to the file (Bazel things).
+    std::ofstream ofs("example1.binpb", std::ios_base::out | std::ios_base::binary);
     ofs.write(serialization_args.serialized_bytes, serialization_args.serialized_bytes_size);  
 
     return 0;

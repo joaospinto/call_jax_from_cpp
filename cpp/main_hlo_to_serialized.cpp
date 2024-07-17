@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
     proto.set_serialized_executable(serialized);
     *proto.mutable_compile_options() = compile_options.ToProto().value();
 
-    // Run `find -L . -name example1.bin` to the file (Bazel things).
+    // Run `find -L . -name example1.binpb` to the file (Bazel things).
     std::ofstream ofs("example1.binpb", std::ios_base::out | std::ios_base::binary);
     const bool succeeded = proto.SerializeToOstream(&ofs);
     std::cout << "Succeeded? " << succeeded << std::endl;
