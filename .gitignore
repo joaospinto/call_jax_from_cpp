@@ -3,3 +3,4 @@ compile_commands.json
 MODULE.bazel
 MODULE.bazel.lock
 .venv
+*.egg-info
